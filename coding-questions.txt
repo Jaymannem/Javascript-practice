@@ -1,0 +1,175 @@
+1. Reverse an Array:
+=====================
+
+// 1. using reverse() method.
+
+let original = [1, 2, 3, 4, 5];
+let reverse = numbers.reverse();
+console.log(reverse) // [ 5, 4, 3, 2, 1 ]
+console.log(original) // [ 5, 4, 3, 2, 1 ]
+
+* It does not return new array.
+* It effects the original array.
+* It works only on arrays.
+
+* If we want do string reverse first we need to convert the array 
+into string by using split() method.
+
+* If we want to reverse an array without modifying the origianl array
+we have to use spread operator or toReverse() method.
+
+let numbers = [1, 2, 3, 4, 5];
+let reverse = [...numbers].reverse();
+console.log(reverse) // [ 5, 4, 3, 2, 1 ]
+console.log(numbers) // [1, 2, 3, 4, 5]
+
+
+// 2. using toReverse() method
+
+toReverse() --> It returns new array with the elements in reverse order.
+            --> Returns an array without modifying the origianl array. 
+
+const originalArray = [10,20, 30, 40];
+const reversedArray = originalArray.toReversed();
+console.log(reversedArray) // [ 40, 30, 20, 10 ]
+console.log(originalArray) // [ 10, 20, 30, 40 ]
+
+
+// 3. using for loop
+
+function reverseArray(nums) {
+    let result = [];
+    for(let i = nums.length-1; i>=0; i--) {
+        result.push(nums[i])
+    }
+    return result;
+}
+console.log(reverseArray([10, 20, 30])) // [ 30, 20, 10 ]
+
+
+// 4. using reduce() method
+
+const reversed = [1, 2, 3].reduce((acc, val) => [val, ...acc], []);
+console.log(reversed) // [ 3, 2, 1 ]
+________________________________________________________________________________
+
+2. Remove duplicates from an array:
+====================================
+
+// Way 1 - using set method
+
+let numbers = [10, 20, 30, 20, 10, 40];
+let uniqueNums = [...new Set(numbers)]
+console.log(uniqueNums) // [ 10, 20, 30, 40 ]
+
+* Set object allows only unique values. if it encounters duplicate 
+values, it automatically removes them.
+
+* We use spread operator to convert the set object into a array. 
+
+
+// Way 2 - using reduce() method
+
+function removeDuplicates(nums) {
+    const uniqueNums = nums.reduce((acc, curr) => {
+        if(!acc.includes(curr)) {
+            acc.push(curr)
+        }
+        return acc;
+    }, [])
+    console.log(uniqueNums) // [ 10, 20, 30, 40 ]
+}
+removeDuplicates(numbers)
+
+
+// Way 3 - for of loop
+
+function findUniqueElements(nums) {
+  let result = [];
+  for(let num of nums) {
+    if(!result.includes(num)) {
+        result.push(num)
+    }
+  }
+  return result
+}
+console.log(findUniqueElements(numbers)) // [ 10, 20, 30, 40 ]
+
+
+// Way 4 - Using filter and index
+
+function findUniqueElements1(nums) {
+    return nums.filter((item, index)=> nums.indexOf(item) === index)
+}
+console.log(findUniqueElements1(numbers))
+
+explanation: 
+-------------
+arr = [1,2,2,3,4,4]
+
+item ==> 1, 2, 2, 3, 4, 4
+index ==> 0, 1, 2, 3, 4, 5
+
+item = 1 and index = 0
+========================
+arr.indexOf(1) === 0 
+0 === 0 (true)
+so it will keep 1
+
+item = 2 and index = 1
+========================
+arr.indexOf(2) === 1
+1 === 1 (true)
+So it will keep 2 
+
+item = 2 and index = 2
+========================
+arr.indexOf(2) === 2
+1 === 2 (false)
+So it wont add 2 
+
+output: [1, 2, 3, 4]
+
+________________________________________________________________________________
+
+3. find duplicate element count in array:
+===========================================
+
+function countDuplicates(arr) {
+    const countMap = {};
+    const duplicates = {};
+
+    for (let item of arr) {
+        countMap[item] = (countMap[item] || 0) + 1;
+    }
+    console.log(countMap) // { '1': 2, '2': 2, '3': 3, '4': 1, '5': 1, '6': 1 }
+
+    for (let key in countMap) {
+        if (countMap[key] > 1) {
+            duplicates[key] = countMap[key];
+        }
+    }
+}
+
+const numbers = [1, 2, 3, 2, 4, 5, 1, 6, 3, 3];
+countDuplicates(numbers); // { '1': 2, '2': 2, '3': 3 }
+
+
+1. Initialize two objects:
+    countMap --> Stores the frequency of each element.
+    duplicates --> Stores only elements that appear more than once.
+
+2. If the item is not in countMap, it starts with 0 and 
+if the item is in countMap, it increments the count. 
+
+3. Loop through countMap to identify the duplicates. If a value is 
+greater than 1, it means the element is a duplicate and add it to duplicates 
+object.
+
+
+// Way 2 - using map
+
+
+
+
+________________________________________________________________________________
