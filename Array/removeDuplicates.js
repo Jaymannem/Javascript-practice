@@ -30,6 +30,6 @@ console.log(findUniqueElements(numbers)) // [ 10, 20, 30, 40 ]
 
 // Way 4 - Using filter and index
 function findUniqueElements1(nums) {
-    
+    return nums.filter((item, index)=> nums.indexOf(item) === index)
 }
 console.log(findUniqueElements1(numbers))
