@@ -166,10 +166,4 @@ if the item is in countMap, it increments the count.
 greater than 1, it means the element is a duplicate and add it to duplicates 
 object.
 
-
-// Way 2 - using map
-
-
-
-
 ________________________________________________________________________________
