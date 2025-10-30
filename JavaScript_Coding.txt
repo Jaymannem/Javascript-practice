@@ -675,6 +675,63 @@ console.log(unique_data);
 
 ________________________________________________________________________________
 
+12. String Reverse:
+====================
+
+Way 1: Using for loop:
+------------------------
+const text = 'mannem';
+
+function stringReverse(str) {
+   let reversed = "";
+   for(let i = str.length-1; i>=0; i--) {
+    reversed = reversed + str[i]
+   }
+   return reversed;
+};
+
+console.log(stringReverse(text)) // mennam
+
+
+
+Way 2: Using split, reverse and join()
+----------------------------------------
+
+const textReverse = text.split("").reverse().join("");
+console.log(textReverse); // mennam
+
+
+
+Way 3: Using reduce()
+------------------------
+const reverseString = text
+  .split("")
+  .reduce((reverse, char) => char + reverse, "");
+
+console.log(reverseString); // mennam
+
+
+
+Way 4: Using Spread Operator:
+-------------------------------
+const textreverse = [...text].reverse().join('');
+console.log(textreverse); // mennam
+
+
+
+Way 5: Using Recursion:
+-------------------------
+
+function stringText(str) {
+    if(str === "") return "";
+
+    return stringText(str.slice(1)) + str[0]
+}
+console.log(stringText(text)) // mennam
+
+
+________________________________________________________________________________
+
 
 
 
