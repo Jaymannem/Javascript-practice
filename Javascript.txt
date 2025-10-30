@@ -1,0 +1,68 @@
+What is JavaScript:
+====================
+JavaScript is an Interpreted, dynamic programming language.
+
+Primarily used to make web pages interactive and dynamic.
+
+It is one of the core technologies of the web, along with HTML and CSS.
+
+No need for compilation; executed directly by the browser.
+
+Event-Driven & Asynchronous: Handles user interactions and asynchronous 
+tasks efficiently.
+
+Cross-Platform: Works on all major browsers and platforms.
+
+Manipulate the DOM (Document Object Model) to update content dynamically.
+
+Build Single Page Applications (SPAs) with frameworks like React, Angular, 
+Vue.
+
+We can develop the backend applications by using Node JS.
+
+Every modern browser supports JavaScript.
+
+Versatile: Works for front-end, back-end, mobile apps, and 
+even desktop apps.
+
+**************************************************************************************
+
+Features of JavaScript:
+=========================
+1. Interpreted Language: 
+    No need for compilation; runs directly in the browser.
+
+2. Lightweight and Dynamic:
+    Flexible and easy to integrate with other technologies.
+
+3. Cross-Platform:
+    Works on all major browsers and operating systems.
+
+4. Object-Oriented (Prototype-Based):
+    Supports objects and inheritance through prototypes.
+
+5. Event-Driven:
+    Handles user interactions efficiently.
+
+6. Asynchronous and Single-Threaded:
+    Uses the event loop for non-blocking operations.
+
+7. Versatile:
+    Can be used for front-end, back-end (Node.js), mobile apps, 
+    and desktop apps.
+
+8. 
+
+
+
+Limitations of JavaScript:
+============================
+
+
+
+
+**************************************************************************************
+
+
+
+

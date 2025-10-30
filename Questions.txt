@@ -1,0 +1,100 @@
+1. Reverse a string without using built-in reverse()  --> 
+
+2. Find the first non-repeating character in a string?  --> 
+
+3. Flatten a nested array - [1, [2, [3, 4]], 5]                 --> Done
+
+4. Find the missing number in a sequence [1, 2, 3, 5]           --> Done
+
+5. Check if two strings are anagrams
+
+6. What is event delegation, and why is it useful in large DOM trees?
+
+7. What is the difference between null and undefined?
+
+8. Explain the concept of hoisting with an example.
+
+9. How does the event loop work in JavaScript? Explain microtasks vs macrotasks.
+
+10. What are closures and how can they be used to implement private variables?
+
+11. What's the difference between map(), forEach(), and reduce()?
+
+12. // Input:
+const input = ['apple', 'banana', 'apple', 'orange', 'banana', 'apple'];
+// Output:
+{
+ apple: 3,
+ banana: 2,
+ orange: 1
+}
+
+13. Remove duplicates from array and objects.
+
+14. Merge two arrays 
+
+15. Flatten nested arrays 
+
+16. Find min and max values 
+
+17. Get second largest element 
+
+18. Count element occurrences 
+
+19. Rotate array by k positions 
+
+20. Compute union of arrays 
+
+21. Find array intersections 
+
+22. Remove falsy values 
+
+23. Shuffle an array 
+
+24. Sort array of 0s, 1s, and 2s 
+
+25. Chunk array into smaller parts
+
+26. Find max subarray sum 
+
+27. Find pairs summing to target
+
+28. Palindrome
+
+29. Fibonacci series 
+
+30. Factorial of a number 
+
+31. Prime Number check 
+
+32. Fizz buzz progrm?
+
+33. Count vowels and consonants 
+
+34. Sort an array?
+
+35. Check if a number is Armstrong?
+
+36. Calculate GCD of 2 numbers?
+
+37. Reverse a number?
+
+38. Check the number of digits in a number?
+
+39. Find the sum of the numbers
+
+40. Swap the numbers?
+
+41. Find the length of a string?
+
+42. Find the common elements in 2 arrays. 
+
+43. Remove all whitespaces from a string? 
+
+44. Generate random numbers? 
+
+45. Check if a year is leap year? 
+
+46. Find the sum of first N natural numbers?
+
+47. has table in javascript? 

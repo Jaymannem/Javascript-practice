@@ -14,8 +14,8 @@ temp1.push(...arr.filter((num) => num !== 0 && num !== 1));
 temp1.push(...arr.filter((num) => num === 1));
 console.log(temp1); // [0, 0, 0, 2, 3, 4, 5, 1, 1, 1]
 
-// 3. using reduce() method
 
+// 3. using reduce() method
 let result = arr.reduce(
   (acc, val) => {
     if (val === 0) acc.zeros.push(val);

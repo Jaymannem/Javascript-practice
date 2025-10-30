@@ -1,0 +1,697 @@
+1. Reverse an Array:
+=====================
+
+// 1. using reverse() method.
+
+let original = [1, 2, 3, 4, 5];
+let reverse = numbers.reverse();
+console.log(reverse) // [ 5, 4, 3, 2, 1 ]
+console.log(original) // [ 5, 4, 3, 2, 1 ]
+
+* reverse() method does not return new array.
+* It effects the original array.
+* It works only on arrays.
+
+* If we want do string reverse --> first we need to convert the string 
+into array by using split() method.
+
+* To reverse an array without modifying the origianl array
+then we have to use spread operator or toReverse() method.
+
+let numbers = [1, 2, 3, 4, 5];
+let reverse = [...numbers].reverse();
+console.log(reverse) // [ 5, 4, 3, 2, 1 ]
+console.log(numbers) // [1, 2, 3, 4, 5]
+
+
+// 2. using toReverse() method
+
+toReverse() --> It returns new array with the elements in reverse order.
+            --> Returns an array without modifying the origianl array. 
+
+const originalArray = [10,20, 30, 40];
+const reversedArray = originalArray.toReversed();
+console.log(reversedArray) // [ 40, 30, 20, 10 ]
+console.log(originalArray) // [ 10, 20, 30, 40 ]
+
+
+// 3. using for loop
+
+function reverseArray(nums) {
+    let result = [];
+    for(let i = nums.length-1; i>=0; i--) {
+        result.push(nums[i])
+    }
+    return result;
+}
+console.log(reverseArray([10, 20, 30])) // [ 30, 20, 10 ]
+
+
+// 4. using reduce() method
+
+const reversed = [1, 2, 3].reduce((acc, val) => [val, ...acc], []);
+console.log(reversed) // [ 3, 2, 1 ]
+________________________________________________________________________________
+
+2. Remove duplicates from an array:
+====================================
+
+// Way 1 - using set method
+
+let numbers = [10, 20, 30, 20, 10, 40];
+let uniqueNums = [...new Set(numbers)]
+console.log(uniqueNums) // [ 10, 20, 30, 40 ]
+
+* Set object allows only unique values. if it encounters duplicate 
+values, it automatically removes them.
+
+* We use spread operator to convert the set object into a array. 
+
+
+// Way 2 - using reduce() method
+
+function removeDuplicates(nums) {
+    const uniqueNums = nums.reduce((acc, curr) => {
+        if(!acc.includes(curr)) {
+            acc.push(curr)
+        }
+        return acc;
+    }, [])
+    console.log(uniqueNums) // [ 10, 20, 30, 40 ]
+}
+removeDuplicates(numbers)
+
+
+// Way 3 - for of loop
+
+function findUniqueElements(nums) {
+  let result = [];
+  for(let num of nums) {
+    if(!result.includes(num)) {
+        result.push(num)
+    }
+  }
+  return result
+}
+console.log(findUniqueElements(numbers)) // [ 10, 20, 30, 40 ]
+
+
+// Way 4 - Using filter and index
+
+function findUniqueElements1(nums) {
+    return nums.filter((item, index)=> nums.indexOf(item) === index)
+}
+console.log(findUniqueElements1(numbers))
+
+explanation: 
+-------------
+arr = [1,2,2,3,4,4]
+
+item ==> 1, 2, 2, 3, 4, 4
+index ==> 0, 1, 2, 3, 4, 5
+
+item = 1 and index = 0
+========================
+arr.indexOf(1) === 0 
+0 === 0 (true)
+so it will keep 1
+
+item = 2 and index = 1
+========================
+arr.indexOf(2) === 1
+1 === 1 (true)
+So it will keep 2 
+
+item = 2 and index = 2
+========================
+arr.indexOf(2) === 2
+1 === 2 (false)
+So it wont add 2 
+
+output: [1, 2, 3, 4]
+
+________________________________________________________________________________
+
+3. find duplicate elements count in array:
+===========================================
+
+function countDuplicates(arr) {
+    const countMap = {};
+    const duplicates = {};
+
+    for (let item of arr) {
+        countMap[item] = (countMap[item] || 0) + 1;
+    }
+    console.log(countMap) // { '1': 2, '2': 2, '3': 3, '4': 1, '5': 1, '6': 1 }
+
+    for (let key in countMap) {
+        if (countMap[key] > 1) {
+            duplicates[key] = countMap[key];
+        }
+    }
+}
+
+const numbers = [1, 2, 3, 2, 4, 5, 1, 6, 3, 3];
+countDuplicates(numbers); // { '1': 2, '2': 2, '3': 3 }
+
+
+1. Initialize two objects:
+    countMap --> Stores the frequency of each element.
+    duplicates --> Stores only elements that appear more than once.
+
+2. If the item is not in countMap, it starts with 0 and 
+if the item is in countMap, it increments the count. 
+
+3. Loop through countMap to identify the duplicates. If a value is 
+greater than 1, it means the element is a duplicate and add it to duplicates 
+object.
+
+________________________________________________________________________________
+
+4. Find longest word in a string:
+===================================
+
+// Way:1 for of
+const text = "Welcome to Javascript programming";
+
+function findLongestWord(text) {
+  const words = text.split(" ");
+  let longestWord = "";
+  for (let word of words) {
+    if (word.length > longestWord.length) {
+      longestWord = word;
+    }
+  }
+  return longestWord;
+}
+console.log(findLongestWord(text)); // programming
+
+* Iterate through each word and update longest if the current word is longer.
+
+
+// Way2: Using split() and reduce() 
+function findLongestWord1(text) {
+    const words = text.split(" ");
+    return words.reduce((current, longest) => {
+        return current.length > longest.length ? current : longest
+    }, "")
+}
+console.log(findLongestWord1(text)) // programming
+
+* Sort words by length in descending order.
+* The first element after sorting is the longest word.
+
+
+// Way3: Using split() and sort()
+function findLongestWord2(text) {
+  const words = text.split(" ");
+  const sortWords = words.sort((a, b) => b.length - a.length); // [ 'programming', 'Javascript', 'Welcome', 'to' ]
+  return sortWords[0] // programming
+
+}
+console.log(findLongestWord2(text))
+
+
+* split(' ') converts the string into an array of words.
+* reduce() compares each word’s length and keeps the longest one.
+________________________________________________________________________________
+
+5. Zeros and Non Zeros Pattern:
+=================================
+
+let arr = [1, 2, 0, 1, 0, 3, 1, 0, 4, 5];
+
+// 1. using filter + flat()
+
+let temp = [];
+temp.push(arr.filter((num) => num === 0));
+temp.push(arr.filter((num) => num !== 0 && num !== 1));
+temp.push(arr.filter((num) => num === 1));
+console.log(temp.flat()); // [0, 0, 0, 2, 3, 4, 5, 1, 1, 1]
+
+* filter() creates arrays based on conditions:
+      -> First array: all zeros.
+      -> Second array: all numbers except 0 and 1.
+      -> Third array: all ones.
+
+* push() adds these arrays into temp array.
+
+* flat() flattens the nested arrays into a single array.
+
+
+
+// 2. using Spread operator instead of flat() method
+
+let temp1 = [];
+temp1.push(...arr.filter((num) => num === 0));
+temp1.push(...arr.filter((num) => num !== 0 && num !== 1));
+temp1.push(...arr.filter((num) => num === 1));
+console.log(temp1); // [0, 0, 0, 2, 3, 4, 5, 1, 1, 1]
+
+* Instead of pushing arrays and flattening later, the spread 
+operator (...) inserts elements directly into temp1 array.
+
+* It avoids creating nested arrays and eliminates the need for flat().
+
+
+
+// 3. using reduce() method
+
+let result = arr.reduce(
+  (acc, val) => {
+    if (val === 0) acc.zeros.push(val);
+    else if (val === 1) acc.ones.push(val);
+    else acc.others.push(val);
+    return acc;  // [0, 0, 0, 2, 3, 4, 5, 1, 1, 1]
+  },
+  { zeros: [], others: [], ones: [] }
+);
+console.log([...result.zeros, ...result.others, ...result.ones]);
+
+* reduce() iterates through the array and categorizes values into 
+three arrays: zeros, others, and ones.
+
+* At the end, we merge them using the spread operator.
+
+
+
+// 4. using concat method
+
+let temp2 = [].concat(...arr.filter(val=> val === 0))
+            .concat(...arr.filter(val => val !== 0 && val !== 1))
+            .concat(...arr.filter(val => val === 1))
+console.log(temp2); // [0, 0, 0, 2, 3, 4, 5, 1, 1, 1]
+
+* concat() combines multiple arrays into one.
+
+* filter() creates an array for zeros, others, and ones.
+
+________________________________________________________________________________
+
+6. Find duplicate elements in an array:
+========================================
+
+const arr = [1,2,3,2,4,1,5]
+
+// 1. using filter and index
+
+const unique = arr.filter((item, index)=> arr.indexOf(item) === index);
+console.log(unique) // [ 1, 2, 3, 4, 5 ]
+
+const duplicates = arr.filter((item, index) => arr.indexOf(item) !== index);
+console.log(duplicates) // [2, 1]
+
+// 2. using object
+function findDuplicates(nums) {
+    let duplicatesCount = {};
+    let duplicateElements = [];
+
+    for(let num of nums) {
+        duplicatesCount[num] = (duplicatesCount[num] || 0) + 1
+        if(duplicatesCount[num] === 2) {
+            duplicateElements.push(num)
+        }
+    }
+    return duplicateElements
+}
+console.log(findDuplicates(arr))
+________________________________________________________________________________
+
+7. Array Flat:
+===============
+
+// Way 1: Using built-in functions
+
+const flatArray = nestedArray.flat(Infinity);
+console.log(flatArray) // [ 1, 2, 3, 4, 5, 6, 7 ]
+
+* Infinity ensures all levels are flattened.
+
+
+// Way 2: Without built-in functions
+function flattenArray(arr) {
+    let result = [];
+    for(let nums of arr) {
+        if(Array.isArray(nums)) {
+            result = result.concat(flattenArray(nums))
+        } else {
+            result.push(nums)
+        }
+    }
+    return result;
+}
+console.log(flattenArray(nestedArray)) // [ 1, 2, 3, 4, 5, 6, 7 ]
+________________________________________________________________________________
+
+8. Find the missing number in a sequence:
+===========================================
+
+// Way 1 - Using for loop 
+
+const Input = [1, 2, 3, 5];
+
+function findMissingNumber(nums) {
+  for (let i = 0; i < nums.length - 1; i++) {
+    if (nums[i + 1] - nums[i] !== 1) {
+      return nums[i] + 1;
+    }
+  }
+  return null;
+}
+console.log(findMissingNumber(Input)); // 4
+
+
+Way 2: Using for loop
+
+function findMissingNumbers(nums) {
+  let missingNums = [];
+  for(let i=0; i<nums.length-1; i++) {
+    for(let nextNumber = nums[i] + 1; nextNumber < nums[i+1]; nextNumber++) {
+      missingNums.push(nextNumber)
+    }
+  }
+  return missingNums.length ? missingNums : null
+}
+
+console.log(findMissingNumbers([1, 2, 4, 6])); // [3, 5]
+console.log(findMissingNumbers([1, 2, 3, 5])); // [4]
+
+
+________________________________________________________________________________
+
+9. Check if two strings are anagrams in JavaScript:
+====================================================
+
+An anagram is a word or phrase formed by rearranging the letters of 
+another word or phrase.
+
+Way 1: Using split(), sort and join() 
+----------------------------------------
+
+function isAnagram(str1, str2) {
+    if(str1.length !== str2.length) return false;
+
+    const sortStr1 = str1.split('').sort().join('');
+    const sortStr2 = str2.split('').sort().join('');
+
+    return sortStr1 === sortStr2;
+}
+
+
+console.log(isAnagram("listen", "silent")); // true
+console.log(isAnagram("jaya", "jayaa")); // false
+
+* Convert both strings to arrays, sort, join and compare 
+
+
+Way 2: Using Spread Operator, sort and join
+----------------------------------------------
+const isAnagram1 = (a, b) => {
+    if(a.length !== b.length) return false;
+    
+    return [...a].sort().join('') === [...b].sort().join("")
+}
+
+console.log(isAnagram1('listen', 'silent')); // true 
+console.log(isAnagram1('hello', "world")); // false
+
+
+Way 3: Using frequency counter:
+---------------------------------
+
+function isAnagram2(str1, str2) {
+  if(str1.length !== str2.length) return false; 
+
+  const count = {};
+
+  for(let char of str1) {
+    count[char] = (count[char] || 0) + 1
+    // { l: 1, i: 1, s: 1, t: 1, e: 1, n: 1 }
+  }
+
+  for(let char of str2) {
+    if(!count[char]) return false;
+    count[char]--; 
+  }
+
+  return true;
+
+}
+
+console.log(isAnagram2('listen', 'silent')); // true 
+console.log(isAnagram2('hello', "world")); // false
+________________________________________________________________________________
+
+10. Check if a string is palindrome or not:
+=============================================
+
+* A palindrome is a string that reads the same forward and backward.
+
+Way 1: Using split, reverse and join():
+-----------------------------------------
+
+function isPalindrome(str) {
+    const reverseStr = str.split("").reverse().join("");
+    return str === reverseStr
+}
+
+console.log(isPalindrome("madam")) // true
+console.log(isPalindrome("hello")); // false
+
+* split('') → converts string to array of characters.
+* reverse() → reverses the array.
+* join('') → converts back to string.
+* Compare original and reversed strings.
+
+
+
+Way 2: Using Recursion:
+-------------------------
+
+function isPalindrome1(str) {
+    if(str.length <= 1) return true; 
+
+    if(str[0] !== str[str.length-1]) return false; 
+
+    return isPalindrome1(str.slice(1, -1))
+}
+console.log(isPalindrome1("madam")) // true
+console.log(isPalindrome1("hello")); // false
+
+
+* If the string has 0 or 1 character, it’s automatically 
+a palindrome. Example: "" or "a" → return true.
+
+* Compare First and Last Characters.
+
+* Remove the first and last characters using slice(1, -1).
+
+Example:
+--------- 
+"madam" → first = m, last = m → OK → check "ada".
+"ada" → first = a, last = a → OK → check "d".
+"d" → length ≤ 1 → return true.
+
+
+Way 3: using every() method:
+------------------------------
+function isPalindrome2(str) {
+  return str.split("").every((char, i) => char === str[str.length - 1 - i]);
+}
+
+console.log(isPalindrome2("madam")); // true
+console.log(isPalindrome2("hello")); // false
+
+* Converts the string into an array of individual characters.
+
+* every() runs on each element of the array.
+
+* char → current character and i → current index.
+
+str = "madam", length = 5
+
+i = 0 -> char === str[5-1]
+         char("m") ==== str[4]("m") 
+
+i = 1 -> char === str[5-2]
+         char ("a") === str[3] ("a)
+
+Same for others as well and finally if all match → palindrome.
+
+
+
+Way 4: Using for loop:
+-----------------------
+function isPalindrome3(str) {
+  for (let i = 0; i < str.length / 2; i++) {
+    if (str[i] !== str[str.length - 1 - i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+console.log(isPalindrome3("madam")); // true
+console.log(isPalindrome3("hello")); // false
+
+* We only need to check the first half of the string against 
+the second half.
+   Example: For "madam", check m vs m, a vs a.
+
+* str[i] → character from the start.
+
+  str[str.length - 1 - i] → character from the end.
+
+  If they differ, return false.
+
+* If the loop finishes without mismatches, the string is a palindrome.
+
+________________________________________________________________________________
+
+11. Remove duplicates objects from object:
+=============================================
+
+Way 1: Using Set and JSON.stringify() and parse()
+---------------------------------------------------
+
+const uniqueUsers = Array.from(
+  new Set(users.map((user) => JSON.stringify(user)))
+).map((str) => JSON.parse(str));
+
+console.log(uniqueUsers);
+// [ { id: 1, name: 'jaya' }, { id: 2, name: 'jaswik' } ]
+
+
+* Converts each object in the users array into a JSON string, because 
+Set can only check uniqueness for primitive values not for objects. 
+    users.map(u => JSON.stringify(u))
+
+
+* Creates a Set from the array of JSON strings.
+* Set automatically removes duplicates.
+
+* new Set(...) after this step: 
+Set {
+  '{"id":1,"name":"jaya"}',
+  '{"id":2,"name":"jaswik"}'
+}
+
+
+* Array.from(new Set(...)) --> Converts the Set back into an array.
+
+* Converts each JSON string back into an object using below line: 
+    map((str) => JSON.parse(str))
+
+
+  
+Way 2: Using Object:
+-----------------------
+
+const obj = {};
+const unique_users = [];
+
+for(let user of users) {
+    if(!obj[user.id]) {
+        obj[user.id] = true;
+        unique_users.push(user)
+    }
+}
+console.log(unique_users);
+// [ { id: 1, name: 'jaya' }, { id: 2, name: 'jaswik' } ]
+
+
+* Creates an empty object "obj" that will act as a hash table. the 
+purpose of hash table is to track which id values have already 
+been seen.
+
+* Creates an empty array "unique_users" to store unique objects.
+
+* Check if id Exists in obj using below condition: 
+    if (!obj[user.id]) {}
+
+* We can mark id as seen by using below code:
+    obj[user.id] = true;
+
+* Adds the current user object to unique_users because it’s the first 
+time we see the id.
+
+* Duplicate {id: 1, name: 'jaya'} is skipped because obj[1] 
+was already true.
+
+
+
+Way 3: Using reduce + map()
+-----------------------------
+const uniqueData = users.reduce((map, user)=>{
+  if(!map.has(user.id)) 
+  map.set(user.id, user);
+  return map;
+}, new Map());
+
+console.log([...uniqueData.values()]);
+// [ { id: 1, name: 'jaya' }, { id: 2, name: 'jaswik' } ];
+
+
+* reduce() iterates over the users array.
+
+* map is the accumulator, initialized as new Map().
+
+* user is the current object in the iteration.
+
+* Check if id exists in Map using below code: 
+      if(!map.has(user.id)) {}
+
+* map.has(user.id) checks if the id is already stored.
+
+* If not, map.set(user.id, user) adds the user object with 
+id as the key.
+
+* After processing all users, reduce() returns the Map containing 
+unique users.
+
+* Convert Map values to Array by using below code: 
+      [...uniqueUsers.values()]
+
+* .values() returns all user objects and [... ] spreads them into 
+an array.
+
+
+
+Way 4: Using for loop:
+----------------------
+const unique = {};
+const unique_data = [];
+
+for(let i = 0; i< users.length; i++) {
+  const user = users[i];
+
+  if(!unique[user.id]) {
+    unique[user.id] = true;
+    unique_data.push(user)
+  }
+}
+console.log(unique_data);
+// [ { id: 1, name: 'jaya' }, { id: 2, name: 'jaswik' } ]
+
+________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

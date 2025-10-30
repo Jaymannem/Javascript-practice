@@ -1,6 +1,10 @@
 const arr = [1,2,3,2,4,1,5]
 
 // 1. using filter and index
+
+const unique = arr.filter((item, index)=> arr.indexOf(item) === index);
+console.log(unique) // [ 1, 2, 3, 4, 5 ]
+
 const duplicates = arr.filter((item, index) => arr.indexOf(item) !== index);
 console.log(duplicates) // [2, 1]
 
